@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekapan Materi Yang Telah DiPelajari</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .nav-link.active {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            background: white;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            /* atau tinggi sesuai desain kamu */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .article-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Categories Filter */
+        .categories-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background-color: #556cd6;
+        }
+
+        /* --- Social Media Icons for Contact Page --- */
+        .social-icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Space between icons */
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto; /* Center the container */
+        }
+
+        .social-icon {
+            font-size: 4em; /* Large icon size */
+            color: #667eea; /* Default color */
+            transition: color 0.3s ease, transform 0.2s ease;
+            text-decoration: none; /* Remove underline from links */
+            display: flex; /* Allow flex properties for vertical alignment if text is added later */
+            align-items: center; /* Center icon vertically */
+            justify-content: center; /* Center icon horizontally */
+            width: 80px; /* Fixed width for consistent spacing */
+            height: 80px; /* Fixed height */
+            border-radius: 50%; /* Make it circular */
+            background-color: #f0f0f0; /* Light background for icons */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* More prominent shadow on hover */
+        }
+
+        .social-icon.whatsapp:hover {
+            color: white;
+            background-color: #25D366; /* WhatsApp green */
+        }
+
+        .social-icon.instagram:hover {
+            color: white;
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); /* Instagram gradient */
+        }
+
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-filter {
+                justify-content: center;
+            }
+
+            .social-icons-container {
+                flex-direction: column; /* Stack icons vertically on small screens */
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Apanskut</a>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-page="home">Beranda</a></li>
+                <li><a href="#" class="nav-link" data-page="articles">Artikel</a></li>
+                <li><a href="#" class="nav-link" data-page="about">Tentang</a></li>
+                <li><a href="#" class="nav-link" data-page="contact">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-content active" id="home">
+            <section class="hero">
+                <div class="container">
+                    <h1>Welcome to Arfan's Rewind</h1>
+                    <p>Berisi tentang beberapa mata pelajaran yang pernah saya pelajari selama bersekolah di SMKN 2
+                        Karanganyar</p>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <div class="article-image"><img src="images/basis-data.png" alt=""></div>
+                        <div class="article-content">
+                            <span class="article-category">Kelas 11</span>
+                            <h3 class="article-title">Basis Data</h3>
+                            <p class="article-excerpt">Basis data adalah kumpulan data yang terorganisir dan disimpan secara sistematis di dalam komputer...</p>
+                            <a href="basis.html" class="read-more-btn">Baca Selengkapnya</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image"><img src="images/Python.jpg" alt=""></div>
+                        <div class="article-content">
+                            <span class="article-category">Kelas 10</span>
+                            <h3 class="article-title">Python</h3>
+                            <p class="article-excerpt">Python adalah bahasa pemrograman tingkat tinggi yang bersifat interpreted, dynamically typed, dan...</p>
+                            <a href="python.html" class="read-more-btn">Baca Selengkapnya</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image"><img src="images/OIP.webp" alt=""></div>
+                        <div class="article-content">
+                            <span class="article-category">Kelas 10</span>
+                            <h3 class="article-title">HTML dan CSS</h3>
+                            <p class="article-excerpt">HTML adalah bahasa markup standar yang digunakan untuk membuat struktur dasar dari sebuah halaman web...</p>
+                            <a href="htmlcss.html" class="read-more-btn">Baca Selengkapnya</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content" id="articles">
+            <section class="hero">
+                <div class="container">
+                    <h1>Semua Artikel</h1>
+                    <p>Jelajahi koleksi artikel lengkap dari berbagai kategori</p>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="categories-filter">
+                    <button class="category-btn active" data-category="all">Semua</button>
+                    <button class="category-btn" data-category="Kelas10">Kelas 10</button>
+                    <button class="category-btn" data-category="Kelas11">Kelas 11</button>
+                    <button class="category-btn" data-category="Kelas12">Kelas 12</button>
+                </div>
+
+                <div class="articles-grid" id="articlesGrid">
+                    <article class="article-card" data-category="Kelas10">
+                        <div class="article-image"><img src="images/Python.jpg" alt=""></div>
+                        <div class="article-content">
+                            <span class="article-category">Kelas 10</span>
+                            <h3 class="article-title">Python</h3>
+                            <p class="article-excerpt">Python adalah bahasa pemrograman tingkat tinggi yang bersifat interpreted, dynamically typed, dan...</p>
+                            <a href="python.html" class="read-more-btn">Baca Selengkapnya</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-category="Kelas11">
+                        <div class="article-image"><img src="images/basis-data.png" alt=""></div>
+                        <div class="article-content">
+                            <span class="article-category">Kelas 11</span>
+                            <h3 class="article-title">Basis Data</h3>
+                            <p class="article-excerpt">Basis data adalah kumpulan data yang terorganisir dan disimpan secara sistematis di dalam komputer...</p>
+                            <a href="basis.html" class="read-more-btn">Baca Selengkapnya</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-category="Kelas11">
+                        <div class="article-image"><img src="images/bergerak.png" alt=""></div>
+                        <div class="article-content">
+                            <span class="article-category">Kelas 11</span>
+                            <h3 class="article-title">Pemrograman Perangkat Bergerak</h3>
+                            <p class="article-excerpt">Pemrograman perangkat bergerak adalah proses pembuatan aplikasi yang berjala...</p>
+                            <a href="bergerak.html" class="read-more-btn">Baca Selengkapnya</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-category="Kelas10">
+                        <div class="article-image"><img src="images/OIP.webp" alt=""></div>
+                        <div class="article-content">
+                            <span class="article-category">Kelas 10</span>
+                            <h3 class="article-title">HTML dan CSS</h3>
+                            <p class="article-excerpt">HTML adalah bahasa markup standar yang digunakan untuk membuat struktur dasar dari sebuah halaman web...</p>
+                            <a href="htmlcss.html" class="read-more-btn">Baca Selengkapnya</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content" id="about">
+            <section class="hero">
+                <div class="container">
+                    <h1>About Me</h1>
+                    <p>He finds joy in cats, art, musics, films, well brewed coffee</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="page-content" id="contact">
+            <section class="hero">
+                <div class="container">
+                    <h1>Hubungi Saya</h1>
+                    <p>Punya pertanyaan atau saran? Jangan ragu untuk menghubungi saya</p>
+                </div>
+                <div class="container">
+                    <div class="social-icons-container">
+                        <a href="https://wa.me/6287860045746" target="_blank" class="social-icon whatsapp" title="Hubungi via WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/hfarfansyah_/" target="_blank" class="social-icon instagram" title="Kunjungi Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Apanskut</h3>
+            </div>
+            <div class="footer-section">
+                <h3>Kategori</h3>
+                <p><a href="#">Kelas 10</a></p>
+                <p><a href="#">Kelas 11</a></p>
+                <p><a href="#">Kelas 12</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Tautan Cepat</h3>
+                <p><a href="#">Beranda</a></p>
+                <p><a href="#">Artikel</a></p>
+                <p><a href="#">Tentang</a></p>
+                <p><a href="#">Kontak</a></p>
+                <p><a href="#">Kebijakan Privasi</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>Email: hfarfansyah@gmail.com</p>
+                <p>Telepon: +62 878 6004 5746</p>
+                <p>Alamat: Surakarta, Jawa Tengah</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Apanskut. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Page navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page-content');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Remove active class from all nav links
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+
+                // Add active class to clicked link
+                link.classList.add('active');
+
+                // Hide all pages
+                pages.forEach(page => page.classList.remove('active'));
+
+                // Show selected page
+                const targetPage = link.getAttribute('data-page');
+                document.getElementById(targetPage).classList.add('active');
+
+                // Close mobile menu
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Category filter
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const category = button.getAttribute('data-category');
+
+                // Filter articles
+                articleCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling (kept for general links if you add any, but not directly used for page nav now)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission alert (removed the form, so this is now redundant, but leaving the listener for now)
+        // document.querySelector('form').addEventListener('submit', function (e) {
+        //     e.preventDefault();
+        //     alert('Pesan berhasil dikirim! Terima kasih atas feedback Anda.');
+        //     this.reset();
+        // });
+    </script>
+</body>
+
+</html>

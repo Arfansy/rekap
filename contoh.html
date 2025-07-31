@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e0f2f7; /* Light blue background */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to the top */
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1s ease-out; /* Fade-in animation */
+            margin-top: 50px; /* Space from the top */
+        }
+
+        /* Profile Image */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #007bff; /* Blue border */
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        /* Headings */
+        h1 {
+            color: #0056b3; /* Darker blue */
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+
+        h2 {
+            color: #007bff; /* Blue */
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        /* Paragraphs and Text */
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: #28a745; /* Green */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px 10px;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Grey */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker grey on hover */
+        }
+
+        /* List Styling (e.g., for skills or interests) */
+        ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px; /* Space between list items */
+        }
+
+        ul li {
+            background-color: #f0f8ff; /* Light azure */
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #cce7ff;
+            font-size: 0.95em;
+            color: #0056b3;
+            transition: background-color 0.3s ease;
+        }
+
+        ul li:hover {
+            background-color: #cce7ff; /* Lighter blue on hover */
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 20px;
+                margin-top: 20px; /* Less space from top on smaller screens */
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            ul {
+                flex-direction: column; /* Stack list items vertically on small screens */
+                align-items: center;
+            }
+        }
+        .read-more-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background-color: #556cd6;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img src="images/20f664d4-26f3-4a11-9f58-a177deeee8e1.jpg" alt="Profile Picture" class="profile-img" id="profileImage">
+        <h1>Muhammad Hafizi Arfansyah </h1>
+        <p>Hello! I'm Muhammad Hafizi Arfansyah, im a student at SMKN 2 Karanganyar</p>
+
+        <h2>About Me</h2>
+        <p>I find joy in cats, art, music, films, books, and well brewed coffee</p>
+
+        <h2>Skills</h2>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>PHP</li>
+            <li>Code Igniter</li>
+            <li>UI/UX Design</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <a href="hfarfansyah@gmail.com" class="btn">Email Me</a>
+        <p></p>
+        <a href="htmlcss.html" class="read-more-btn">Kembali</a>
+    </div>
+    
+
+    <script>
+        // JavaScript for interactivity and dynamic content
+
+        // Get the current date and display it in the footer
+        const lastUpdatedElement = document.getElementById('lastUpdated');
+        const now = new Date();
+        lastUpdatedElement.textContent = `Last updated: ${now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+
+        // Simple interactivity: Change profile image on click (example)
+        const profileImage = document.getElementById('profileImage');
+        let isDefaultImage = true;
+
+        profileImage.addEventListener('click', function() {
+            if (isDefaultImage) {
+                profileImage.src = 'https://via.placeholder.com/150/FF5733/FFFFFF?text=Awesome'; // Change to a different placeholder
+                profileImage.alt = 'Awesome Profile Picture';
+            } else {
+                profileImage.src = 'https://via.placeholder.com/150/007bff/FFFFFF?text=Profile'; // Revert to original
+                profileImage.alt = 'Profile Picture';
+            }
+            isDefaultImage = !isDefaultImage; // Toggle the state
+        });
+
+        // You could add more complex JS here, like:
+        // - A "Read More" button for longer bio sections
+        // - A simple contact form validation
+        // - Dynamic loading of content
+    </script>
+</body>
+</html>

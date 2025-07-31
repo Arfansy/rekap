@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baca Selengkapnya - Apanskut</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- Styles for the Weather App Teaser --- */
+        .weather-app-teaser {
+            background-color: #f0f8ff; /* Light blue background */
+            border: 2px solid #007bff; /* Blue border */
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            cursor: pointer; /* Indicate it's clickable */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+        }
+
+        .weather-app-teaser:hover {
+            background-color: #e6f7ff; /* Lighter blue on hover */
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .weather-app-teaser h4 {
+            color: #0056b3;
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .weather-app-teaser p {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .weather-app-teaser .icon-large {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive adjustments for main content (already there, but good to ensure compatibility) */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .article-detail {
+            flex: 3;
+            min-width: 0;
+        }
+
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .article-detail, .sidebar {
+                width: 100%;
+                min-width: auto;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <h1 class="logo">Apanskut</h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="#" class="active">Artikel</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <article class="article-detail">
+            <img src="images/bergerak.png" alt="Article Header Image" class="article-image">
+            <h2 class="article-title">Pemrograman Perangkat Bergerak</h2>
+            <div class="article-meta">
+                <span><i class="fas fa-calendar-alt"></i> 20 Juli 2025</span>
+                <span><i class="fas fa-user"></i> Oleh Admin</span>
+                <span><i class="fas fa-tag"></i> Kategori: Kelas 10</span>
+            </div>
+            <div class="article-body">
+                <p>Pemrograman Perangkat Bergerak adalah proses pengembangan aplikasi atau perangkat lunak yang dijalankan pada perangkat mobile seperti:
+                </p>
+                <ul>
+                    <li>Smartphone</li>
+                    <li>Tablet</li>
+                    <li>Smartwatch</li>
+                    <li>Perangkat wearable lainnya</li>
+                </ul>
+                <p>Aplikasi ini dapat berupa aplikasi native, web, atau hybrid, dan biasanya dijalankan pada sistem operasi seperti Android, iOS, atau HarmonyOS.</p>
+
+                <h3>Tujuan Pemrograman Mobile</h3>
+                <ul>
+                    <li>Membuat aplikasi yang responsif dan mudah digunakan di layar kecil</li>
+                    <li>Mengoptimalkan fungsi perangkat seperti kamera, GPS, sensor, dan koneksi internet</li>
+                    <li>Menyediakan layanan yang dapat diakses kapan saja dan di mana saja</li>
+                </ul>
+                </div>
+        </article>
+
+        <aside class="sidebar">
+            <h3>Artikel Terkait</h3>
+            <div class="related-articles">
+                <div class="related-article-item">
+                    <img src="images/basis-data.png" alt="Related Article 2">
+                    <div class="related-article-info">
+                        <h4><a href="basis.html">Basis Data</a></h4>
+                        <p>20 Juli 2025</p>
+                    </div>
+                </div>
+                <div class="related-article-item">
+                    <img src="images/OIP.webp" alt="Related Article 3">
+                    <div class="related-article-info">
+                        <h4><a href="htmlcss.html">HTML CSS</a></h4>
+                        <p>20 Juli 2025</p>
+                    </div>
+                </div>
+                <div class="related-article-item">
+                    <img src="images/Python.jpg" alt="Related Article 4">
+                    <div class="related-article-info">
+                        <h4><a href="python.html">Python</a></h4>
+                        <p>20 Juli 2025</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Apanskut. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for redirecting to the weather app page
+        const weatherAppTeaser = document.getElementById('weatherAppTeaser');
+
+        if (weatherAppTeaser) {
+            weatherAppTeaser.addEventListener('click', () => {
+                window.location.href = 'weather_app.html'; // Redirect to the weather app page
+            });
+        }
+        
+        // Keep your original script.js if it has other functions
+    </script>
+    <script src="script.js"></script> 
+</body>
+</html>
